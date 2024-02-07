@@ -3,22 +3,117 @@
 
 <head>
     <style>
+        @keyframes button{
+            from{
+                background:red;
+                color:white;
+                border-radius: 0 50px 0 50px;
+            }
+            to{
+                background:yellow;
+                color:red;
+                border-radius: 50px 0 50px 0;
+            }
+        }
+        @keyframes spin {
+            from{
+                transform: rotate(0deg);
+            }
+            to{
+                transform: rotate(359deg);
+            }
+        }
     * {
         margin: 0;
         padding: 0;
+        /*        cursor:url(./assets/img/bomb.png), auto;*/
+        cursor: none;
+        font-family: sans-serif;
     }
-
-    body {
+    body{
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         height: 100vh;
         width: 100vw;
-        background-image:url(./assets/img/stacyspin-big.gif);
-        background-position:center center;
+    }
+    .stacyHeads {
+        height: 300vh;
+        width: 300vw;
+        background-image: url(./assets/img/stacyspin-big.jpg);
+        background-position: center center;
+
+        
+        z-index: 1;
+        position: absolute;
+    }
+
+    .sparkEmitter {
+/*        top:0;*/
+        left:60px;
+        height: 1px;
+        width: 1px;
+        position: absolute;
+        display: block;
+        /*        background:red;*/
+    }
+
+    .spark {
+        position: absolute;
+        /*top:0;
+        left:0;*/
+        /*height: 10px;
+        width: 10px;*/
+        display: block;
+        background: red;
+        z-index: 999;
+    }
+
+    .bomb {
+        /*top:0;
+        left:0;*/
+        background-image: url(./assets/img/bomb.png);
+        position: absolute;
+        z-index: 2;
+        height: 66px;
+        width: 64px;
+        display: block;
+        pointer-events: none;
+        z-index: 99;
+    }
+
+    .start {
+        font-weight: 900;
+        padding:20px 40px;
+        background:red;
+        color:white;
+        animation:200ms infinite alternate ease button;
+        z-index: 2;
+    }
+    .boom {
+        height:100vh;
+        width:100vw;
+        position: absolute;
+        background-image: url(./assets/img/boom.gif);
+        background-position: center center;
+        background-size: contain;
+        display: none;
+        z-index: 2;
+
     }
     </style>
 </head>
 
 <body>
+    <div class="stacyHeads"></div>
+    <div class="bomb">
+        <div class="sparkEmitter"></div>
+    </div>
+    <div class="start">Click Me</div>
+    <div class="boom"></div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="./assets/js/script.js"></script>
 </body>
 
 </html>
